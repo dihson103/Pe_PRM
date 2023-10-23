@@ -6,54 +6,54 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Employee {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+        @PrimaryKey(autoGenerate = true)
+        public int id;
 
-    @ColumnInfo(name = "full_name")
-    public String fullName;
+        @ColumnInfo(name = "full_name")
+        public String fullName;
 
-    @ColumnInfo(name = "hire_date")
-    public String hireDate;
+        @ColumnInfo(name = "hire_date")
+        public String hireDate;
 
-    @ColumnInfo(name = "salary")
-    public double salary;
+        @ColumnInfo(name = "salary")
+        public double salary;
 
-    public Employee(int id, String fullName, String hireDate, double salary) {
-        this.id = id;
-        this.fullName = fullName;
-        this.hireDate = hireDate;
-        this.salary = salary;
-    }
+        public Employee(String fullName, String hireDate, double salary) {
+            this.fullName = fullName;
+            this.hireDate = hireDate;
+            this.salary = salary;
+        }
+
 
     public int getId() {
-        return id;
-    }
+            return id;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public String getFullName() {
-        return fullName;
-    }
+        public String getFullName() {
+            return fullName;
+        }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+        public void setFullName(String fullName) {
+            this.fullName = fullName;
+        }
 
-    public String getHireDate() {
-        return hireDate;
-    }
+        public String getHireDate() {
+            return hireDate;
+        }
 
-    public void setHireDate(String hireDate) {
-        this.hireDate = hireDate;
-    }
+        public void setHireDate(String hireDate) {
+            this.hireDate = hireDate;
+        }
 
-    public double getSalary() {
-        return salary;
-    }
+        public double getSalary() {
+            return salary;
+        }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+        public void setSalary(double salary) {
+            this.salary = salary;
+        }
 }

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
     AppDatabase db;
 
     EmpPresenter empPresenter;
+    EditText edtFullName;
+    EditText edtHireDate;
+    EditText edtSalary;
+    TextView txtID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +38,46 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
                         AppDatabase.class, "database-name").allowMainThreadQueries()
                 .build();
 
-        empPresenter = new EmpPresenter(this);
+        empPresenter = new EmpPresenter(this, db);
+
+        edtFullName = findViewById(R.id.txt_search_fullname);
+        edtHireDate =  findViewById(R.id.txt_search_hiredate);
+        edtSalary = findViewById(R.id.txt_search_salary);
+        txtID = findViewById(R.id.txtIdInList);
 
         Button btn = findViewById(R.id.button3);
         btn.setOnClickListener(view -> {
-            String name = ((EditText)findViewById(R.id.txt_search_fullname)).getText().toString();
-            String hireDate = ((EditText)findViewById(R.id.txt_search_hiredate)).getText().toString();
-            String salary = ((EditText)findViewById(R.id.txt_search_salary)).getText().toString();
-            empPresenter.search();
+            String name = ((EditText)findViewById(R.id.txt_search_fullname)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_fullname)).getText().toString();
+            String hireDate = ((EditText)findViewById(R.id.txt_search_hiredate)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_hiredate)).getText().toString();
+            String salary = ((EditText)findViewById(R.id.txt_search_salary)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_salary)).getText().toString();
+            empPresenter.search(name,hireDate,salary);
         });
 
+        ((Button)findViewById(R.id.btnAdd)).setOnClickListener(view -> {
+            empPresenter.addEmployee(edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
+        });
+
+        ((Button)findViewById(R.id.btnUpdate)).setOnClickListener(view -> {
+            empPresenter.updateEmployee(Integer.parseInt(txtID.getText().toString()),edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
+        });
+
+        ((Button)findViewById(R.id.btnDelete)).setOnClickListener(view -> {
+            empPresenter.deleteEmployee(Integer.parseInt(txtID.getText().toString()));
+        });
     }
 
     @Override
     public void show(List<Employee> employees) {
         RecyclerView recyclerView = findViewById(R.id.rycl);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new EmployeeAdapter(employees));
+        recyclerView.setAdapter(new EmployeeAdapter(employees,this));
+    }
+
+    @Override
+    public void bindingEmployee(int id, String fullName, String hireDate, double salary) {
+        edtFullName.setText(fullName);
+        edtHireDate.setText(hireDate);
+        edtSalary.setText(String.valueOf(salary));
+        txtID.setText(String.valueOf(id));
     }
 }

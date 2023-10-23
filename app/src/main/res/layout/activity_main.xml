@@ -11,7 +11,7 @@
         android:id="@+id/topframe"
         android:name="com.example.pe_prm.TopFragment"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="298dp"
         android:layout_weight="1"
         tools:layout="@layout/fragment_top" />
 
@@ -19,8 +19,6 @@
         android:id="@+id/bottomFrame"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:layout_weight="1">
-
-    </FrameLayout>
+        android:layout_weight="1"/>
 
 </LinearLayout>
