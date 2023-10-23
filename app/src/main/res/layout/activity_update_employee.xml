@@ -51,7 +51,7 @@
         android:layout_marginEnd="84dp"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/edtAddSalary" />
 
     <TextView
         android:id="@+id/textView4"
@@ -72,13 +72,13 @@
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/idEmployee"
-        app:layout_constraintEnd_toEndOf="@+id/edtFullName"
-        app:layout_constraintStart_toStartOf="@+id/edtFullName"
+        app:layout_constraintEnd_toEndOf="@+id/edtAddFullName"
+        app:layout_constraintStart_toStartOf="@+id/edtAddFullName"
         app:layout_constraintTop_toTopOf="@+id/idEmployee"
         app:layout_constraintVertical_bias="0.444" />
 
     <EditText
-        android:id="@+id/edtSalary"
+        android:id="@+id/edtAddSalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -89,7 +89,7 @@
         tools:layout_editor_absoluteX="163dp" />
 
     <EditText
-        android:id="@+id/edtFullName"
+        android:id="@+id/edtAddFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -118,8 +118,8 @@
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="@+id/hireDate"
-        app:layout_constraintEnd_toEndOf="@+id/edtSalary"
-        app:layout_constraintStart_toStartOf="@+id/edtSalary"
+        app:layout_constraintEnd_toEndOf="@+id/edtAddSalary"
+        app:layout_constraintStart_toStartOf="@+id/edtAddSalary"
         app:layout_constraintTop_toTopOf="@+id/hireDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
