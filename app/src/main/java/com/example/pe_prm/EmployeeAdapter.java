@@ -24,9 +24,9 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeAdapter.EmployyHolder holder, int position) {
-        holder.Name.setText(employees.get(position).getFullName());
-        holder.HireDate.setText(employees.get(position).getHireDate());
-        holder.Salary.setText(String.valueOf( employees.get(position).getSalary()));
+        holder.Name.setText("Full Name: " + employees.get(position).getFullName());
+        holder.HireDate.setText("Hire Date: "+employees.get(position).getHireDate());
+        holder.Salary.setText("Salary: "+String.valueOf( employees.get(position).getSalary()));
     }
 
     @Override
