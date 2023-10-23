@@ -10,45 +10,44 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements TopFragment.ISendData,ISearchPresenter {
+public class MainActivity extends AppCompatActivity implements IEmpPresenter{
 
-    AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-    AppDatabase.class, "database-name").build();
-    private SearchPresenter mSearchPresenter;
+    AppDatabase db;
+
+    EmpPresenter empPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_top);
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.topframe, new TopFragment());
-        fragmentTransaction.add(R.id.bottomFrame, new BottomFragment());
-        fragmentTransaction.commit();
+        db = Room.databaseBuilder(getApplicationContext(),
+                        AppDatabase.class, "database-name").allowMainThreadQueries()
+                .build();
+
+        empPresenter = new EmpPresenter(this);
+
+        Button btn = findViewById(R.id.button3);
+        btn.setOnClickListener(view -> {
+            String name = ((EditText)findViewById(R.id.txt_search_fullname)).getText().toString();
+            String hireDate = ((EditText)findViewById(R.id.txt_search_hiredate)).getText().toString();
+            String salary = ((EditText)findViewById(R.id.txt_search_salary)).getText().toString();
+            empPresenter.search();
+        });
+
     }
 
     @Override
-    public void sendData(Employee employee) {
-        BottomFragment fragment = (BottomFragment) getSupportFragmentManager().findFragmentById(R.id.bottomFrame);
-        //how();
-
-        mSearchPresenter = new SearchPresenter(this, db);
-
-        mSearchPresenter.searchEmployee(employee);
-    }
-
-    @Override
-    public List<Employee> search(Employee employee) {
-        return null;
-    }
-
-    @Override
-    public void show(List<Employee> list) {
-        RecyclerView rec = findViewById(R.id.recyler);
-        rec.setLayoutManager(new LinearLayoutManager(this));
-        rec.setAdapter(new EmployeeAdapter(list));
+    public void show(List<Employee> employees) {
+        RecyclerView recyclerView = findViewById(R.id.rycl);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new EmployeeAdapter(employees));
     }
 }

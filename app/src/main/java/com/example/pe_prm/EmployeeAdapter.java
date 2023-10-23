@@ -18,15 +18,15 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     @NonNull
     @Override
     public EmployeeAdapter.EmployyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_bottom, parent, false);
-        return null;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.employee_card, parent, false);
+        return new EmployyHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeAdapter.EmployyHolder holder, int position) {
         holder.Name.setText(employees.get(position).getFullName());
         holder.HireDate.setText(employees.get(position).getHireDate());
-        holder.Salary.setText((int) employees.get(position).getSalary());
+        holder.Salary.setText(String.valueOf( employees.get(position).getSalary()));
     }
 
     @Override
