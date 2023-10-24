@@ -36,15 +36,22 @@ public class EmpPresenter {
     void addEmployee(String fullName, String hireDate, double salary){
         dao.insertAll(new Employee( fullName, hireDate, salary));
         mIEmpPresenter.show(dao.getAll());
+        mIEmpPresenter.ToastMessage("Add successfully");
     }
 
     void updateEmployee(int id, String fullName, String hireDate, double salary){
         dao.update(id, fullName, hireDate, salary);
         mIEmpPresenter.show(dao.getAll());
+        mIEmpPresenter.ToastMessage("Update successfully");
     }
 
     void deleteEmployee(int id){
         dao.deleteById(id);
         mIEmpPresenter.show(dao.getAll());
+        mIEmpPresenter.ToastMessage("Delete successfully");
+    }
+
+    void EnableOrDisableButtonUpdateAndDelete(boolean isEnable){
+        mIEmpPresenter.EnableOrDisableButtonUpdateAndDelete(isEnable);
     }
 }

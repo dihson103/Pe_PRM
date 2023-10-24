@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
     EditText edtSalary;
     TextView txtID;
 
+    Button btnAdd,btnSearch,btnUpdate,btnDelete,btnRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,27 +47,47 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
         edtSalary = findViewById(R.id.txt_search_salary);
         txtID = findViewById(R.id.txtIdInList);
 
-        Button btn = findViewById(R.id.button3);
-        btn.setOnClickListener(view -> {
+        btnAdd = findViewById(R.id.btnAdd);
+        btnSearch = findViewById(R.id.btnSearch);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnDelete = findViewById(R.id.btnDelete);
+        btnRefresh=findViewById(R.id.btnRefresh);
+
+        EnableOrDisableButtonUpdateAndDelete(false);
+
+        btnSearch.setOnClickListener(view -> {
+            EnableOrDisableButtonUpdateAndDelete(false);
             String name = ((EditText)findViewById(R.id.txt_search_fullname)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_fullname)).getText().toString();
             String hireDate = ((EditText)findViewById(R.id.txt_search_hiredate)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_hiredate)).getText().toString();
             String salary = ((EditText)findViewById(R.id.txt_search_salary)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_salary)).getText().toString();
             empPresenter.search(name,hireDate,salary);
         });
 
-        ((Button)findViewById(R.id.btnAdd)).setOnClickListener(view -> {
+        btnAdd.setOnClickListener(view -> {
             empPresenter.addEmployee(edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
         });
 
-        ((Button)findViewById(R.id.btnUpdate)).setOnClickListener(view -> {
+        btnUpdate.setOnClickListener(view -> {
             empPresenter.updateEmployee(Integer.parseInt(txtID.getText().toString()),edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
         });
 
-        ((Button)findViewById(R.id.btnDelete)).setOnClickListener(view -> {
+        btnDelete.setOnClickListener(view -> {
             empPresenter.deleteEmployee(Integer.parseInt(txtID.getText().toString()));
+        });
+
+        btnRefresh.setOnClickListener(view -> {
+            empPresenter.search("","","");
+            EnableOrDisableButtonUpdateAndDelete(false);
+            clearText();
         });
     }
 
+    private void clearText(){
+        edtFullName.setText("");
+        edtHireDate.setText("");
+        edtSalary.setText("");
+        txtID.setText("");
+    }
     @Override
     public void show(List<Employee> employees) {
         RecyclerView recyclerView = findViewById(R.id.rycl);
@@ -79,5 +101,16 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
         edtHireDate.setText(hireDate);
         edtSalary.setText(String.valueOf(salary));
         txtID.setText(String.valueOf(id));
+    }
+
+    @Override
+    public void EnableOrDisableButtonUpdateAndDelete(boolean isEnable) {
+        btnDelete.setEnabled(isEnable);
+        btnUpdate.setEnabled(isEnable);
+    }
+
+    @Override
+    public void ToastMessage(String satus) {
+        Toast.makeText(this, satus, Toast.LENGTH_SHORT).show();
     }
 }

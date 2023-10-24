@@ -16,12 +16,6 @@
             android:name=".DetailEmployee"
             android:exported="false" />
         <activity
-            android:name=".UpdateEmployee"
-            android:exported="false" />
-        <activity
-            android:name=".AddEmployee"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

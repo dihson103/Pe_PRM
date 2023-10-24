@@ -3,6 +3,7 @@ package com.example.pe_prm;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,17 +29,18 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeAdapter.EmployyHolder holder, int position) {
+        iEmpPresenter.EnableOrDisableButtonUpdateAndDelete(false);
         holder.Name.setText(employees.get(position).getFullName());
         holder.HireDate.setText(employees.get(position).getHireDate());
         holder.Salary.setText(String.valueOf( employees.get(position).getSalary()));
         holder.id.setText(String.valueOf(employees.get(position).getId()));
         holder.cardView.setOnClickListener(view -> {
-            iEmpPresenter.bindingEmployee(employees.get(position).getId(),employees.get(position).getFullName(),employees.get(position).getHireDate(),employees.get(position).getSalary());
+            iEmpPresenter.bindingEmployee(employees.get(position).getId(),employees.get(position)
+                    .getFullName(),employees.get(position).getHireDate(),employees.get(position).getSalary());
+            iEmpPresenter.EnableOrDisableButtonUpdateAndDelete(true);
         });
-
     }
     @Override
-
     public int getItemCount() {
         return employees.size();
     }
