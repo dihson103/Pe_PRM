@@ -22,15 +22,15 @@ public class EmpPresenter {
         else if(fullName.isEmpty() && salary.isEmpty())
             mIEmpPresenter.show(dao.findByHireDate(hireDate));
         else if(hireDate.isEmpty() && salary.isEmpty())
-            mIEmpPresenter.show(dao.findByFullName(fullName));
+            mIEmpPresenter.show(dao.findByFullName("%"+fullName+"%"));
         else if(fullName.isEmpty())
             mIEmpPresenter.show(dao.findByHireDateAndSalary(hireDate, Double.parseDouble(salary)));
         else if(hireDate.isEmpty())
-            mIEmpPresenter.show(dao.findByFullNameAndSalary(fullName, Double.parseDouble(salary)));
+            mIEmpPresenter.show(dao.findByFullNameAndSalary("%"+fullName+"%", Double.parseDouble(salary)));
         else if(salary.isEmpty())
-            mIEmpPresenter.show(dao.findByFullNameAndHireDate(fullName, hireDate));
+            mIEmpPresenter.show(dao.findByFullNameAndHireDate("%"+fullName+"%", hireDate));
         else
-            mIEmpPresenter.show(dao.findByAll(fullName, hireDate, Double.parseDouble(salary)));
+            mIEmpPresenter.show(dao.findByAll("%"+fullName+"%", hireDate, Double.parseDouble(salary)));
     }
 
     void addEmployee(String fullName, String hireDate, String salary){
