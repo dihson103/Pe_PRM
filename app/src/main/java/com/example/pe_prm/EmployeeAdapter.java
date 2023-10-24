@@ -40,6 +40,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
             iEmpPresenter.EnableOrDisableButtonUpdateAndDelete(true);
         });
     }
+  
     @Override
     public int getItemCount() {
         return employees.size();

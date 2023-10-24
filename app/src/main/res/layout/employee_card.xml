@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-a"
     xmlns:app2="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="110dp"
@@ -18,7 +17,7 @@
     app:cardCornerRadius="25dp"
     app:cardElevation="4dp"
     tools:ignore="MissingConstraints">
-
+  
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -29,12 +28,12 @@
         android:textColor="#F87F7F"
         android:textSize="16sp"
         android:textStyle="bold" />
-
+  
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="299dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="#F1E9E9"
         app:layout_constraintCircleRadius="30dp"
