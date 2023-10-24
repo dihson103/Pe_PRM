@@ -33,10 +33,15 @@ public class EmpPresenter {
             mIEmpPresenter.show(dao.findByAll(fullName, hireDate, Double.parseDouble(salary)));
     }
 
-    void addEmployee(String fullName, String hireDate, double salary){
-        dao.insertAll(new Employee( fullName, hireDate, salary));
-        mIEmpPresenter.show(dao.getAll());
-        mIEmpPresenter.ToastMessage("Add successfully");
+    void addEmployee(String fullName, String hireDate, String salary){
+        try {
+            dao.insertAll(new Employee( fullName, hireDate, salary));
+            mIEmpPresenter.show(dao.getAll());
+            mIEmpPresenter.ToastMessage("Add successfully");
+        }
+        catch (Exception e) {
+            mIEmpPresenter.ToastMessage(e.getMessage());
+        }
     }
 
     void updateEmployee(int id, String fullName, String hireDate, double salary){
@@ -54,4 +59,6 @@ public class EmpPresenter {
     void EnableOrDisableButtonUpdateAndDelete(boolean isEnable){
         mIEmpPresenter.EnableOrDisableButtonUpdateAndDelete(isEnable);
     }
+
+
 }

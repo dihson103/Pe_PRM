@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
         btnRefresh=findViewById(R.id.btnRefresh);
 
         EnableOrDisableButtonUpdateAndDelete(false);
-
+        // Click button Search
         btnSearch.setOnClickListener(view -> {
             EnableOrDisableButtonUpdateAndDelete(false);
             String name = ((EditText)findViewById(R.id.txt_search_fullname)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_fullname)).getText().toString();
@@ -64,25 +64,25 @@ public class MainActivity extends AppCompatActivity implements IEmpPresenter{
             String salary = ((EditText)findViewById(R.id.txt_search_salary)).getText() == null? "" : ((EditText)findViewById(R.id.txt_search_salary)).getText().toString();
             empPresenter.search(name,hireDate,salary);
         });
-
+        // Click button Add
         btnAdd.setOnClickListener(view -> {
-            empPresenter.addEmployee(edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
+            empPresenter.addEmployee(edtFullName.getText().toString(),edtHireDate.getText().toString(), edtSalary.getText().toString());
         });
-
+        // Click button Update
         btnUpdate.setOnClickListener(view -> {
             empPresenter.updateEmployee(Integer.parseInt(txtID.getText().toString()),edtFullName.getText().toString(),edtHireDate.getText().toString(), Double.parseDouble(edtSalary.getText().toString()));
         });
-
+        // Click button Delete
         btnDelete.setOnClickListener(view -> {
             empPresenter.deleteEmployee(Integer.parseInt(txtID.getText().toString()));
         });
-
+        // Click button Refresh
         btnRefresh.setOnClickListener(view -> {
             empPresenter.search("","","");
             EnableOrDisableButtonUpdateAndDelete(false);
             clearText();
         });
-
+        // Click edit text HireDate
         edtHireDate.setOnClickListener(view -> {
             Calendar calendar = Calendar.getInstance();
 

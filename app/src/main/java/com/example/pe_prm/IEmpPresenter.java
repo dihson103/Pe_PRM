@@ -10,4 +10,6 @@ public interface IEmpPresenter {
     void EnableOrDisableButtonUpdateAndDelete(boolean isEnable);
 
     void ToastMessage(String status);
+
+
 }
