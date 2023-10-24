@@ -73,9 +73,12 @@
         android:layout_height="48dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="72dp"
+        android:enabled="true"
         android:hint="Enter Hire Date"
+        android:inputType="none"
         android:textSize="14sp"
-        android:inputType="datetime"
+        android:focusable="false"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -87,6 +90,7 @@
         android:layout_marginTop="132dp"
         android:hint="Enter Salary"
         android:textSize="14sp"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
